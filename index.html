@@ -10,6 +10,12 @@
 </head>
 <body>
 
+    <!-- Loading screen -->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
     <h1>Data Visualizations: Oil and Telecom Sectors</h1>
     
     <div class="plot-container">
@@ -24,5 +30,7 @@
         <iframe src="{{ url_for('static', filename='plotly/Tele/tele_plotly.html') }}" class="plot-frame"></iframe>
     </div>
 
+    <!-- Include the JS file -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
