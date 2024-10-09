@@ -1,24 +1,26 @@
 from flask import Flask, render_template
 import pandas as pd
 
-app = Flask(__name__)
+# Initialize Flask app, setting the template folder to the root directory
+app = Flask(__name__, template_folder='.')
 
 # Load the datasets
 df_oil = pd.read_csv('data/filtered_oil_data.csv')
 df_tele = pd.read_csv('data/filtered_tele_data.csv')
 
+# Define the main route to render index.html from the root directory
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/oil')
+# Route to serve oil data as JSON (optional)
+@app.route('/oil_data')
 def oil_data():
-    # Return oil data as JSON or render an oil-specific page
     return df_oil.to_json(orient='records')
 
-@app.route('/tele')
+# Route to serve telecom data as JSON (optional)
+@app.route('/tele_data')
 def tele_data():
-    # Return telecom data as JSON or render a telecom-specific page
     return df_tele.to_json(orient='records')
 
 if __name__ == '__main__':

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data Visualizations</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Use url_for to link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 
@@ -13,14 +14,15 @@
     
     <div class="plot-container">
         <h2>Oil Sector Data</h2>
-        <iframe src="plotly/oil/oil_plotly.html" class="plot-frame"></iframe>
+        <!-- Use url_for to link to Oil Plotly HTML -->
+        <iframe src="{{ url_for('static', filename='plotly/Oil/oil_plotly.html') }}" class="plot-frame"></iframe>
     </div>
     
     <div class="plot-container">
         <h2>Telecom Sector Data</h2>
-        <iframe src="plotly/tele/tele_plotly.html" class="plot-frame"></iframe>
+        <!-- Use url_for to link to Telecom Plotly HTML -->
+        <iframe src="{{ url_for('static', filename='plotly/Tele/tele_plotly.html') }}" class="plot-frame"></iframe>
     </div>
 
-    <script src="scripts.js"></script>
 </body>
 </html>

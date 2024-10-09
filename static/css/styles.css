@@ -1,0 +1,24 @@
+.plot-container {
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.plot-frame {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+h2 {
+    margin-top: 20px;
+    text-align: center;
+}
