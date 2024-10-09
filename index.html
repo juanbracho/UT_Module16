@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Visualizations</title>
-    <!-- Use url_for to link to CSS -->
+    <title>Data Visualization Grid</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 
-    <!-- Loading screen -->
-    <div id="loading-screen">
-        <div class="spinner"></div>
-        <p>Loading...</p>
+    <h1>Data Grid: Oil and Telecom Sector</h1>
+
+    <div class="grid-container">
+        <!-- Grid container to hold multiple plots -->
+
+        <!-- Oil Sector Chart -->
+        <div class="grid-item">
+            <h3>Oil Sector Data</h3>
+            <iframe src="{{ url_for('static', filename='plotly/oil/oil_plotly.html') }}" class="plot-frame"></iframe>
+        </div>
+
+        <!-- Telecom Sector Chart -->
+        <div class="grid-item">
+            <h3>Telecom Sector Data</h3>
+            <iframe src="{{ url_for('static', filename='plotly/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
+        </div>
+
     </div>
 
-    <h1>Data Visualizations: Oil and Telecom Sectors</h1>
-    
-    <div class="plot-container">
-        <h2>Oil Sector Data</h2>
-        <!-- Use url_for to link to Oil Plotly HTML -->
-        <iframe src="{{ url_for('static', filename='plotly/Oil/oil_plotly.html') }}" class="plot-frame"></iframe>
-    </div>
-    
-    <div class="plot-container">
-        <h2>Telecom Sector Data</h2>
-        <!-- Use url_for to link to Telecom Plotly HTML -->
-        <iframe src="{{ url_for('static', filename='plotly/Tele/tele_plotly.html') }}" class="plot-frame"></iframe>
-    </div>
-
-    <!-- Include the JS file -->
+    <!-- Include the JS file for interactivity if needed -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    
+
 </body>
 </html>
