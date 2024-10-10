@@ -12,7 +12,7 @@
     <h1>Data Grid: Oil and Telecom Sector</h1>
 
     <div class="grid-container">
-        <!-- Grid container to hold multiple plots -->
+        <!-- Grid container for Plotly -->
 
         <!-- Oil Sector Chart -->
         <div class="grid-item">
@@ -26,11 +26,20 @@
             <iframe src="{{ url_for('static', filename='plotly/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
         </div>
 
+         <!-- Grid container for X -->
+         <div class="grid-item">
+            <h3>Oil Results Data</h3>
+            <!-- Add another chart or visualization here -->
+        </div>
+
+        <div class="grid-item">
+            <h3>Tele Results Data</h3>
+            <!-- Add another chart or visualization here -->
+        </div>
+
     </div>
 
     <!-- Include the JS file for interactivity if needed -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    
-
 </body>
 </html>
