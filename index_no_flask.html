@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Visualization Grid</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+
+    <!-- Theme Switcher Button -->
+    <div class="header">
+        <button id="theme-toggle">
+            <img src="static/images/theme-icon.png" alt="Switch Theme"></button>               
+        <h1>Data Grid: Oil and Telecom Sector</h1>
+    </div>
+
+    <div class="grid-container">
+        <!-- Oil Sector Data and Results -->
+        <div class="grid-item">
+            <h3>Oil Sector Data</h3>
+            <iframe src="static/plots/oil/oil_plotly.html" class="plot-frame"></iframe>
+        </div>
+        <div class="grid-item">
+            <h3>Oil Results Data</h3>
+            <iframe src="static/plots/oil/results_oil_plotly.html" class="plot-frame"></iframe>
+        </div>
+
+        <!-- Telecom Sector Data and Results -->
+        <div class="grid-item">
+            <h3>Telecom Sector Data</h3>
+            <iframe src="static/plots/tele/tele_plotly.html" class="plot-frame"></iframe>
+        </div>
+        <div class="grid-item">
+            <h3>Telecom Results Data</h3>
+            <iframe src="static/plots/tele/results_tele_plotly.html" class="plot-frame"></iframe>
+        </div>
+    </div>
+
+    <!-- Include the JS file for interactivity -->
+    <script src="static/js/scripts.js"></script>
+</body>
+</html>
