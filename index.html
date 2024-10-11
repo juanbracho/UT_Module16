@@ -17,23 +17,23 @@
         <!-- Oil Sector Chart -->
         <div class="grid-item">
             <h3>Oil Sector Data</h3>
-            <iframe src="{{ url_for('static', filename='plotly/oil/oil_plotly.html') }}" class="plot-frame"></iframe>
+            <iframe src="{{ url_for('static', filename='plots/oil/oil_plotly.html') }}" class="plot-frame"></iframe>
         </div>
 
         <div class="grid-item">
             <h3>Oil Results Data</h3>
-            <!-- Add another chart or visualization here -->
+            <iframe src="{{ url_for('static', filename='plots/oil/oil_plot_canvasjs.html') }}" class="plot-frame"></iframe>
         </div>
 
         <!-- Telecom Sector Chart -->
         <div class="grid-item">
             <h3>Telecom Sector Data</h3>
-            <iframe src="{{ url_for('static', filename='plotly/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
+            <iframe src="{{ url_for('static', filename='plots/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
         </div>
 
         <div class="grid-item">
             <h3>Tele Results Data</h3>
-            <!-- Add another chart or visualization here -->
+            <iframe src="{{ url_for('static', filename='plots/tele/tele_plot_canvasjs.html') }}" class="plot-frame"></iframe>
         </div>
 
     </div>
