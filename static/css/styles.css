@@ -1,70 +1,124 @@
-/* Set the body background to dark gray */
+:root {
+    /* Dark theme colors */
+    --bg-color: #2E3A40;
+    --text-color: #f4f4f4;
+    --grid-bg-color: #3E4C53;
+    --header-bg-color: #1F2A30;
+}
+
+.light-theme {
+    /* Light theme colors */
+    --bg-color: #f4f4f4;
+    --text-color: #2E3A40;
+    --grid-bg-color: #fff;
+    --header-bg-color: #ccc;
+}
+
+/* General Styling */
 body {
-    background-color: #333; /* Dark gray background */
-    color: white;           /* Ensure text is readable against dark background */
+    background-color: var(--bg-color);
     font-family: Arial, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
 }
 
-/* Style the main plot container */
-.plot-container {
-    margin: 20px auto;
+h1 {
+    flex-grow: 1; /* Make the title take up the remaining space */
+    text-align: center;
+    color: var(--text-color);
+}
+
+h3 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg-color);
+    position: relative; /* Add relative positioning */
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    outline: none;
+    box-shadow: none;
+}
+
+#theme-toggle:focus, #theme-toggle:active {
+    outline: none;
+    box-shadow: none;
+    -webkit-box-shadow: none; /* For Webkit browsers (Chrome, Safari) */
+    -moz-box-shadow: none; /* For Firefox */
+}
+
+#theme-toggle img {
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+/* For WebKit browsers */
+#theme-toggle::-moz-focus-inner {
+    border: 0;
+    outline: none;
+}
+
+#theme-toggle img:hover {
+    transform: scale(1.1); /* Add hover effect if desired */
+}
+
+#theme-toggle:hover {
+    background-color: #5E6A71;
+}
+
+/* Grid Container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+    grid-gap: 30px;
     padding: 20px;
-    background-color: #f0f0f0; /* Lighter gray background for contrast */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 1000px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
 }
 
-/* Style for the plot iframes */
+.grid-item {
+    background-color: var(--grid-bg-color);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Filters for different themes */
+.light-theme {
+    --icon-filter: invert(0); /* Normal colors for light theme */
+}
+
+.dark-theme {
+    --icon-filter: invert(1); /* Invert colors for dark theme */
+}
+
+/* Responsive for smaller screens */
+@media only screen and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .plot-frame {
     width: 100%;
     height: 500px;
     border: none;
-}
-
-/* Style the titles */
-h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-}
-
-h2 {
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Add space around the labels and dropdowns */
-.plot-container label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.plot-container select {
-    margin-bottom: 20px;
-    padding: 5px;
-}
-
-/* Ensure that the dropdowns have space around them */
-.select-container {
-    margin-bottom: 15px; /* Add space below the dropdowns */
-    display: flex;
-    justify-content: space-between; /* Spread dropdowns */
-}
-
-.select-container div {
-    width: 48%; /* Ensure both dropdowns are side by side */
-}
-
-/* Add a lighter color to the dropdowns for better contrast */
-select {
-    background-color: #fff;
-    color: #333;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
