@@ -5,8 +5,8 @@ import pandas as pd
 app = Flask(__name__, template_folder='.')
 
 # Load the datasets
-df_oil = pd.read_csv('data/filtered_oil_data.csv')
-df_tele = pd.read_csv('data/filtered_tele_data.csv')
+df_oil = pd.read_csv('data/outputs/filtered_oil_data.csv')
+df_tele = pd.read_csv('data/outputs/filtered_tele_data.csv')
 
 # Define the main route to render index.html from the root directory
 @app.route('/')
