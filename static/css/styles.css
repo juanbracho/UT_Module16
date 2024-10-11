@@ -33,6 +33,7 @@ h3 {
     color: var(--text-color);
     margin-bottom: 10px;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 /* Header Styling */
