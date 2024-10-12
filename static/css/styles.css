@@ -24,7 +24,7 @@ body {
 }
 
 h1 {
-    flex-grow: 1; /* Make the title take up the remaining space */
+    flex-grow: 1;
     text-align: center;
     color: var(--text-color);
 }
@@ -36,14 +36,22 @@ h3 {
     text-align: center;
 }
 
+/* Description styling */
+p {
+    color: var(--text-color);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 /* Header Styling */
 .header {
     display: flex;
-    justify-content: center; /* Center the items horizontally */
+    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     background-color: var(--header-bg-color);
-    position: relative; /* Add relative positioning */
+    position: relative;
 }
 
 /* Theme Toggle Button */
@@ -60,31 +68,14 @@ h3 {
     box-shadow: none;
 }
 
-#theme-toggle:focus, #theme-toggle:active {
-    outline: none;
-    box-shadow: none;
-    -webkit-box-shadow: none; /* For Webkit browsers (Chrome, Safari) */
-    -moz-box-shadow: none; /* For Firefox */
-}
-
 #theme-toggle img {
     width: 50px;
     height: 50px;
     display: block;
 }
 
-/* For WebKit browsers */
-#theme-toggle::-moz-focus-inner {
-    border: 0;
-    outline: none;
-}
-
 #theme-toggle img:hover {
-    transform: scale(1.1); /* Add hover effect if desired */
-}
-
-#theme-toggle:hover {
-    background-color: #5E6A71;
+    transform: scale(1.1);
 }
 
 /* Grid Container */
@@ -100,15 +91,6 @@ h3 {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Filters for different themes */
-.light-theme {
-    --icon-filter: invert(0); /* Normal colors for light theme */
-}
-
-.dark-theme {
-    --icon-filter: invert(1); /* Invert colors for dark theme */
 }
 
 /* Responsive for smaller screens */
