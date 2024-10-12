@@ -131,6 +131,7 @@ footer {
     justify-content: center;
     gap: 20px;
     margin-bottom: 20px;
+    padding-top: 10px;
 }
 
 .plot-toggle-btn {
@@ -151,17 +152,17 @@ footer {
     background-color: var(--header-bg-color);
 }
 
+.plot-frame {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
 /* Responsive for smaller screens */
 @media only screen and (max-width: 1024px) {
     .grid-container {
         grid-template-columns: 1fr;
     }
-}
-
-.plot-frame {
-    width: 100%;
-    height: 500px;
-    border: none;
 }
 
 @media only screen and (max-width: 768px) {
