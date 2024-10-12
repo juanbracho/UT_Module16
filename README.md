@@ -1,48 +1,53 @@
- # Data Visualizations for Oil and Telecom Sectors
+# Data Visualization Project: Oil and Telecom Sector Stock Analysis
 
 ## Overview
-This project provides interactive data visualizations for the oil and telecom sectors using Plotly. The visualizations allow users to explore different metrics (e.g., Adjusted Close Price, Volume) for major companies in these sectors. The goal is to provide a clear and interactive way to compare stock data between different companies and sectors over time.
 
-## Features
-- Visualizations for both oil and telecom sectors.
-- Interactive dropdowns for selecting companies and metrics.
-- Ability to view data for individual companies or compare multiple companies simultaneously.
-- The project is powered by data housed in a SQLite database.
+This project is designed to provide a comprehensive data visualization of stock market trends for three major companies in both the oil and telecom sectors: Exxon, ConocoPhillips, Chevron (Oil) and Verizon, T-Mobile, AT&T (Telecom). The visualizations display critical stock data such as adjusted close prices, stock volume, opening prices, high and low prices, percentage changes in stock prices, quarterly volumes, quarterly returns on investment (ROI), and projected ROI for a hypothetical $1500 investment. 
 
-## Project Structure
-- `oil_plotly.ipynb`: Jupyter Notebook for the oil sector visualizations.
-- `tele_plotly.ipynb`: Jupyter Notebook for the telecom sector visualizations.
-- `index.html`: Webpage where the visualizations are embedded.
-- `styles.css`: CSS file to style the webpage.
-- `scripts.js`: JavaScript file to enhance interactivity on the webpage.
+The purpose of this project is to analyze and compare these two sectors to understand which industry offered better investment opportunities based on stock performance during the year 2021. The project utilizes data fetched from external APIs and processed to provide clean, understandable, and interactive visualizations.
 
-## Instructions to Use the Project
-1. Clone the repository to your local machine:
+## Instructions
+
+### Running the Application
+
+1. Clone the repository to your local machine.
+   ```bash
+   git clone <repository-url>
+2. Install the necessary dependencies by running the following:
     ```bash
-    git clone https://github.com/your-repo-name.git
-    ```
-2. Open the `index.html` file in a web browser to access the interactive visualizations.
-3. Use the dropdowns in the visualizations to switch between companies and metrics.
-4. If using the Flask backend, follow the instructions below.
-
-## Flask Backend Setup
-1. Install required Python packages:
-    ```bash
-    pip install Flask pandas plotly sqlite3
-    ```
-2. Run the Flask server:
+    pip install -r requirements.txt
+3. The project includes a Flask application. You can start the Flask app by running:
     ```bash
     python app.py
-    ```
-3. Access the application in your browser at `http://127.0.0.1:5000`.
-
+4. Once the Flask server is running, navigate to http://127.0.0.1:5000/ in your web browser to view the visualizations.
+5. The visualizations include interactive plots built using Plotly. The user can toggle between:
+* Oil Sector Data
+* Telecom Sector Data
+* Combined Data (Oil & Telecom)
+6. A theme switch button is provided to toggle between a light and dark theme, making it easier for users to customize the view based on their preference.
+7. You can also view the static HTML version without Flask by opening the index_no_flask.html file directly in your browser. This version requires no backend but limits interactivity and real-time data fetching.
+## Features
+* Toggle between Oil, Telecom, and Combined sector visualizations.
+* Dropdown options allow users to filter by company and metric (e.g., Adjusted Close, Volume, ROI, etc.).
+* Responsive design to ensure readability on different screen sizes.
+* Light/Dark theme toggle.
+* Interactive descriptions and annotations to explain the significance of the metrics.
+* Footer with project team members and university information.
 ## Ethical Considerations
-This project adheres to ethical standards by using publicly available financial data. No personal or sensitive information is involved in the project, and data usage complies with licensing agreements.
-
+Ethical concerns were considered throughout the project development process:
+1. Accuracy of Data: The data used for analysis was sourced from verified APIs (Yahoo Finance API via yfinance library). Care was taken to ensure that the data was not manipulated beyond typical cleaning steps, such as filling missing values or removing duplicates.
+2. Privacy: The project does not use any personal or private data. All stock market data is publicly available through APIs and is used solely for educational and analysis purposes.
+3. Financial Responsibility: The visualizations and analyses provided are meant for educational purposes and do not constitute financial advice. The data is historical, and stock performance should not be taken as an indicator of future results. Users should exercise caution and perform their own research before making any investment decisions.
 ## Data Sources
-- Oil and Telecom data sourced from publicly available financial datasets.
-
-## Acknowledgments
-- Plotly for interactive data visualizations.
-- Flask for providing the backend framework.
-
+* Yahoo Finance API via the yfinance Python library: All stock data for the oil and telecom companies is fetched using this API.
+## Code References
+* Plotly: Interactive plotting library used for rendering charts and graphs.
+* Flask: Used to run the web application backend.
+* Pandas: Data manipulation and analysis library used to clean and process stock data.
+* yfinance: Python library used to fetch stock data from Yahoo Finance.
+## Project Team
+* Juan Avila
+* Kendall Burkett
+* Patricia Taylor
+* Rahmeen Zindani
+* Cassio Sperb
