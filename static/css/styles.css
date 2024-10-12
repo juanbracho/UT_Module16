@@ -23,7 +23,7 @@ body {
     padding: 0;
 }
 
-h1 {
+h1, h2 {
     flex-grow: 1;
     text-align: center;
     color: var(--text-color);
@@ -104,4 +104,30 @@ p {
     width: 100%;
     height: 500px;
     border: none;
+}
+
+/* Add styles for plot toggle buttons */
+#plot-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.plot-toggle-btn {
+    background-color: var(--grid-bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.plot-toggle-btn:hover {
+    background-color: var(--header-bg-color);
+}
+
+.plot-toggle-btn.active {
+    background-color: var(--header-bg-color);
 }

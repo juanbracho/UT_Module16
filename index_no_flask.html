@@ -12,38 +12,67 @@
     <!-- Theme Switcher Button -->
     <div class="header">
         <button id="theme-toggle">
-            <img src="static/images/theme-icon.png" alt="Switch Theme">
-        </button>
-        <h1>Data Visualization Project<br/> Stock Analysis of the top companies for Oil and Telecom Sector in 2021</h1>
+            <img src="static/images/theme-icon.png" alt="Switch Theme"></button>               
+        <h1>Data Grid: Oil and Telecom Sector</h1>
+    </div>
+
+    <!-- Plot Toggle Buttons -->
+    <div id="plot-toggle">
+        <button id="oil-btn" class="plot-toggle-btn active">Oil Plots</button>
+        <button id="tele-btn" class="plot-toggle-btn">Tele Plots</button>
+        <button id="combined-btn" class="plot-toggle-btn">Combined Plots</button>
+    </div>
+
+    <!-- Descriptions for each sector -->
+    <div id="descriptions">
+        <div id="oil-description" class="description">
+            <h2>Oil Sector Data Analysis</h2>
+            <p>The data for the oil sector includes stock price fluctuations and volume traded for major companies like Exxon, Chevron, and ConocoPhillips. These metrics provide insights into how the oil market performed in 2021.</p>
+        </div>
+        
+        <div id="tele-description" class="description" style="display: none;">
+            <h2>Telecom Sector Data Analysis</h2>
+            <p>The telecom sector includes data for Verizon, AT&T, and T-Mobile. The analysis focuses on stock prices, volume traded, and ROI, comparing the performance of these major telecom companies throughout 2021.</p>
+        </div>
+        
+        <div id="combined-description" class="description" style="display: none;">
+            <h2>Combined Sector Data Analysis</h2>
+            <p>This combined analysis compares the results from both the oil and telecom sectors, showing how the different industries performed in terms of stock price percentage change, volume traded, and return on investment (ROI) in 2021.</p>
+        </div>
     </div>
 
     <div class="grid-container">
         <!-- Oil Sector Data and Results -->
-        <div class="grid-item">
+        <div class="grid-item oil-plot">
             <h3>Oil Sector Data</h3>
-            <p class="description">This chart shows various financial metrics for three major oil companies: Exxon, Chevron, and ConocoPhillips. You can use the dropdown to explore different data points such as Adjusted Close Price, Stock Volume, Opening Price, Highest Price, Lowest Price, and more. Understanding these metrics helps analyze overall trends and performance in the oil sector over the past year.</p>
             <iframe src="static/plots/oil/oil_plotly.html" class="plot-frame"></iframe>
         </div>
-        <div class="grid-item">
+        <div class="grid-item oil-plot">
             <h3>Oil Results Data</h3>
-            <p class="description">This chart presents calculated metrics such as stock price percentage changes, quarterly volumes, return on investment (ROI), and stock volatility for major oil companies. These metrics help to evaluate the performance of each company and make informed investment decisions.</p>
             <iframe src="static/plots/oil/results_oil_plotly.html" class="plot-frame"></iframe>
         </div>
 
         <!-- Telecom Sector Data and Results -->
-        <div class="grid-item">
+        <div class="grid-item tele-plot" style="display: none;">
             <h3>Telecom Sector Data</h3>
-            <p class="description">This chart shows various financial metrics for three major telecom companies: Verizon, T-Mobile, and AT&T. You can use the dropdown to explore different data points such as Adjusted Close Price, Stock Volume, Opening Price, Highest Price, Lowest Price, and more. These metrics help to analyze trends in the telecom sector over the past year.</p>
             <iframe src="static/plots/tele/tele_plotly.html" class="plot-frame"></iframe>
         </div>
-        <div class="grid-item">
+        <div class="grid-item tele-plot" style="display: none;">
             <h3>Telecom Results Data</h3>
-            <p class="description">This chart presents calculated metrics such as stock price percentage changes, quarterly volumes, return on investment (ROI), and stock volatility for major telecom companies. These metrics help to evaluate the performance of each company and make informed investment decisions.</p>
             <iframe src="static/plots/tele/results_tele_plotly.html" class="plot-frame"></iframe>
+        </div>
+
+        <!-- Combined Sector Data and Results -->
+        <div class="grid-item combined-plot" style="display: none;">
+            <h3>Combined Sector Data</h3>
+            <iframe src="static/plots/combined_filtered_plotly.html" class="plot-frame"></iframe>
+        </div>
+        <div class="grid-item combined-plot" style="display: none;">
+            <h3>Combined Results Data</h3>
+            <iframe src="static/plots/combined_results_plotly.html" class="plot-frame"></iframe>
         </div>
     </div>
 
-    <!-- Include the JS file for interactivity -->
     <script src="static/js/scripts.js"></script>
 </body>
 </html>
