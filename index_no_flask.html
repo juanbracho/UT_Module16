@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Visualization Grid</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+
+    <!-- Theme Switcher Button -->
+    <div class="header">
+        <button id="theme-toggle">
+            <img src="static/images/theme-icon.png" alt="Switch Theme"></button>               
+        <h1>Stock Analysis: Oil and Telecom Sector</h1>
+    </div>
+
+    <!-- Plot Toggle Buttons -->
+    <div id="plot-toggle">
+        <button id="oil-btn" class="plot-toggle-btn active">Oil Plots</button>
+        <button id="tele-btn" class="plot-toggle-btn">Tele Plots</button>
+        <button id="combined-btn" class="plot-toggle-btn">Combined Plots</button>
+    </div>
+
+    <!-- Descriptions for each sector -->
+    <div id="descriptions">
+        <div id="oil-description" class="description">
+            <h2>Oil Sector Data Analysis</h2>
+            <p>The data for the oil sector includes stock price fluctuations and volume traded for major companies like Exxon, Chevron, and ConocoPhillips. These metrics provide insights into how the oil market performed in 2021.</p>
+        </div>
+        
+        <div id="tele-description" class="description" style="display: none;">
+            <h2>Telecom Sector Data Analysis</h2>
+            <p>The telecom sector includes data for Verizon, AT&T, and T-Mobile. The analysis focuses on stock prices, volume traded, and ROI, comparing the performance of these major telecom companies throughout 2021.</p>
+        </div>
+        
+        <div id="combined-description" class="description" style="display: none;">
+            <h2>Combined Sectors Data Analysis</h2>
+            <p>This combined analysis compares the results from both the oil and telecom sectors, showing how the different industries performed in terms of stock price percentage change, volume traded, and return on investment (ROI) in 2021.</p>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <!-- Oil Sector Data and Results -->
+        <div class="grid-item oil-plot">
+            <h3>Oil Sector Data</h3>
+            <iframe src="static/plots/oil/oil_plotly.html" class="plot-frame"></iframe>
+        </div>
+        <div class="grid-item oil-plot">
+            <h3>Oil Results Data</h3>
+            <iframe src="static/plots/oil/results_oil_plotly.html" class="plot-frame"></iframe>
+        </div>
+
+        <!-- Telecom Sector Data and Results -->
+        <div class="grid-item tele-plot" style="display: none;">
+            <h3>Telecom Sector Data</h3>
+            <iframe src="static/plots/tele/tele_plotly.html" class="plot-frame"></iframe>
+        </div>
+        <div class="grid-item tele-plot" style="display: none;">
+            <h3>Telecom Results Data</h3>
+            <iframe src="static/plots/tele/results_tele_plotly.html" class="plot-frame"></iframe>
+        </div>
+
+        <!-- Combined Sector Data and Results -->
+        <div class="grid-item combined-plot" style="display: none;">
+            <h3>Combined Sector Data</h3>
+            <iframe src="static/plots/combined_filtered_plotly.html" class="plot-frame"></iframe>
+        </div>
+        <div class="grid-item combined-plot" style="display: none;">
+            <h3>Combined Results Data</h3>
+            <iframe src="static/plots/combined_results_plotly.html" class="plot-frame"></iframe>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="team">
+                <h4>Team Members</h4>
+                <p>Juan Avila, Kendall Burkett, Patricia Taylor, Rahmeen Zindani, Cassio Sperb</p>
+            </div>
+            <div class="project-title">
+                <h4>Project</h4>
+                <p>Data Visualization Track</p>
+            </div>
+            <div class="university">
+                <h4>University of Texas</h4>
+                <p>Bootcamp in Data Analytics</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/scripts.js"></script>
+</body>
+</html>
