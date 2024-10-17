@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Visualization - Oil Sector</title>
+    <title>Data Visualization - Tele Sector</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     
     <!-- Include Tabulator CSS -->
@@ -14,47 +14,46 @@
 
     <div class="header">
         <button id="theme-toggle">
-            <img src="{{ url_for('static', filename='images/theme-icon.png') }}"" alt="Switch Theme">
+            <img src="{{ url_for('static', filename='images/theme-icon.png') }}" alt="Switch Theme">
         </button>               
-        <h1>Oil Sector Data</h1>
+        <h1>Tele Sector Data</h1>
     </div>
 
     <div id="plot-toggle">
-        <button onclick="location.href='{{ index }}'" class="plot-toggle-btn active">Oil Sector</button>
-        <button onclick="location.href='{{ tele }}'" class="plot-toggle-btn">Telecom Sector</button>
+        <button onclick="location.href='{{ index }}'" class="plot-toggle-btn">Oil Sector</button>
+        <button onclick="location.href='{{ tele }}'" class="plot-toggle-btn active">Telecom Sector</button>
         <button onclick="location.href='{{ combined }}'" class="plot-toggle-btn">Combined Sector</button>
     </div>
     
-    
 
-    <!-- Oil Section with Plots -->
+    <!-- Tele Section with Plots -->
     <div class="section" style="display: block;">
-        <h2>Oil Sector Data Analysis</h2>
-        <p>The data for the oil sector includes stock price fluctuations and volume traded for major companies.</p>
+        <h2>tele Sector Data Analysis</h2>
+        <p>The data for the tele sector includes stock price fluctuations and volume traded for major companies.</p>
         
         <div class="grid-container">
             <div class="grid-item">
-                <h3>Oil Sector Data</h3>
-                <iframe src="{{ url_for('static', filename='plots/oil/oil_plotly.html') }}" class="plot-frame"></iframe>
+                <h3>tele Sector Data</h3>
+                <iframe src="{{ url_for('static', filename='plots/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item">
-                <h3>Oil Results Data</h3>
-                <iframe src="{{ url_for('static', filename='plots/oil/results_oil_plotly.html') }}" class="plot-frame"></iframe>
+                <h3>tele Results Data</h3>
+                <iframe src="{{ url_for('static', filename='plots/tele/results_tele_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item">
-                <h3>Oil Sector Data Mean</h3>
+                <h3>tele Sector Data Mean</h3>
                 <iframe src="{{ url_for('static', filename='plots/mean/mean_filtered_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item">
-                <h3>Oil Sector Results Mean</h3>
+                <h3>tele Sector Results Mean</h3>
                 <iframe src="{{ url_for('static', filename='plots/mean/mean_results_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item roi-table">
                 <h2>ROI on $1500 ($) by Company and Quarter</h2>
-                <!-- Oil ROI Table (Tabulator) -->
+                <!-- tele ROI Table (Tabulator) -->
                 <div class="table-container">
-                    <h3>Oil Companies ROI</h3>
-                    <div id="oil-roi-table"></div> <!-- Div for Tabulator table -->
+                    <h3>tele Companies ROI</h3>
+                    <div id="tele-roi-table"></div> <!-- Div for Tabulator table -->
                 </div>
             </div>
         </div>

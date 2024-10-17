@@ -27,47 +27,106 @@ themeToggleBtn.addEventListener('click', switchTheme);
 // Load the saved theme on page load
 window.onload = loadSavedTheme;
 
-// Function to toggle between different plot views
-function switchPlotView(view) {
-    const oilPlots = document.querySelectorAll('.oil-plot');
-    const telePlots = document.querySelectorAll('.tele-plot');
-    const combinedPlots = document.querySelectorAll('.combined-plot');
-    const oilDesc = document.getElementById('oil-description');
-    const teleDesc = document.getElementById('tele-description');
-    const combinedDesc = document.getElementById('combined-description');
+// Function to toggle between different sections (Oil, Telecom, Combined)
+function switchSection(view) {
+    const sections = document.querySelectorAll('.section');
     const buttons = document.querySelectorAll('.plot-toggle-btn');
-
-    // Hide all plots and descriptions first
-    oilPlots.forEach(plot => plot.style.display = 'none');
-    telePlots.forEach(plot => plot.style.display = 'none');
-    combinedPlots.forEach(plot => plot.style.display = 'none');
-    oilDesc.style.display = 'none';
-    teleDesc.style.display = 'none';
-    combinedDesc.style.display = 'none';
+    
+    // Hide all sections and remove 'active' class from buttons
+    sections.forEach(section => section.style.display = 'none');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // Show the relevant plots and descriptions, and highlight the selected button
+    // Show the relevant section and highlight the selected button
     if (view === 'oil') {
-        oilPlots.forEach(plot => plot.style.display = 'block');
-        oilDesc.style.display = 'block';
+        document.getElementById('oil-section').style.display = 'block';
         document.getElementById('oil-btn').classList.add('active');
     } else if (view === 'tele') {
-        telePlots.forEach(plot => plot.style.display = 'block');
-        teleDesc.style.display = 'block';
+        document.getElementById('tele-section').style.display = 'block';
         document.getElementById('tele-btn').classList.add('active');
     } else if (view === 'combined') {
-        combinedPlots.forEach(plot => plot.style.display = 'block');
-        combinedDesc.style.display = 'block';
+        document.getElementById('combined-section').style.display = 'block';
         document.getElementById('combined-btn').classList.add('active');
     }
 }
 
-// Event listeners for the buttons
-document.getElementById('oil-btn').addEventListener('click', () => switchPlotView('oil'));
-document.getElementById('tele-btn').addEventListener('click', () => switchPlotView('tele'));
-document.getElementById('combined-btn').addEventListener('click', () => switchPlotView('combined'));
 
-// Set the default view to Oil plots when the page loads
-window.onload = () => {
-    switchPlotView('oil');  // Only the Oil sector plots will be shown on initial load
+window.onload = function() {
+    // Your existing event listeners and code
+    var toggleBtn = document.getElementById('oil-btn');  // Example element
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            // Event listeners for section toggle buttons
+document.getElementById('oil-btn').addEventListener('click', () => switchSection('index'));
+document.getElementById('tele-btn').addEventListener('click', () => switchSection('tele'));
+document.getElementById('combined-btn').addEventListener('click', () => switchSection('combined'));
+
+        });
+    }
 };
+
+
+// Set the default section to Oil on page load
+window.onload = () => {
+    switchSection('index');
+};
+
+window.onload = function() {
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize Oil ROI Tabulator Table
+        var oilRoiTable = new Tabulator("#oil-roi-table", {
+            ajaxURL: "/oil_roi_data",  // The endpoint for the data
+            layout: "fitColumns",      // Fit columns to the available width
+            height: "250px",           // Set height for the table
+            placeholder: "No Data Available",  // Placeholder if no data is found
+            columns: [
+                {title: "Company", field: "Company", width: 150},  // Company on the left
+                {title: "2020Q1", field: "2020Q1", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q2", field: "2020Q2", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q3", field: "2020Q3", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q4", field: "2020Q4", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q1", field: "2021Q1", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q2", field: "2021Q2", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q3", field: "2021Q3", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q4", field: "2021Q4", formatter: "money", formatterParams: {symbol: "$"}},
+            ]
+        });
+
+        // Initialize Telecom ROI Tabulator Table
+        var teleRoiTable = new Tabulator("#tele-roi-table", {
+            ajaxURL: "/tele_roi_data",  // The endpoint for the data
+            layout: "fitColumns",      // Fit columns to the available width
+            height: "250px",           // Set height for the table
+            placeholder: "No Data Available",  // Placeholder if no data is found
+            columns: [
+                {title: "Company", field: "Company", width: 150},  // Company on the left
+                {title: "2020Q1", field: "2020Q1", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q2", field: "2020Q2", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q3", field: "2020Q3", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q4", field: "2020Q4", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q1", field: "2021Q1", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q2", field: "2021Q2", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q3", field: "2021Q3", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q4", field: "2021Q4", formatter: "money", formatterParams: {symbol: "$"}},
+            ]
+        });
+
+        // Initialize Combined ROI Tabulator Table
+        var combinedRoiTable = new Tabulator("#combined-roi-table", {
+            ajaxURL: "/combined_roi_data",  // The endpoint for the data
+            layout: "fitColumns",      // Fit columns to the available width
+            height: "250px",           // Set height for the table
+            placeholder: "No Data Available",  // Placeholder if no data is found
+            columns: [
+                {title: "Company", field: "Company", width: 150},  // Company on the left
+                {title: "2020Q1", field: "2020Q1", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q2", field: "2020Q2", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q3", field: "2020Q3", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2020Q4", field: "2020Q4", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q1", field: "2021Q1", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q2", field: "2021Q2", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q3", field: "2021Q3", formatter: "money", formatterParams: {symbol: "$"}},
+                {title: "2021Q4", field: "2021Q4", formatter: "money", formatterParams: {symbol: "$"}},
+            ]
+        });
+    });
+}
