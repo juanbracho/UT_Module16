@@ -28,31 +28,31 @@
 
     <!-- Tele Section with Plots -->
     <div class="section" style="display: block;">
-        <h2>tele Sector Data Analysis</h2>
+        <h2>Tele Sector Data Analysis</h2>
         <p>The data for the tele sector includes stock price fluctuations and volume traded for major companies.</p>
         
         <div class="grid-container">
             <div class="grid-item">
-                <h3>tele Sector Data</h3>
+                <h3>Tele Sector Data</h3>
                 <iframe src="{{ url_for('static', filename='plots/tele/tele_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item">
-                <h3>tele Results Data</h3>
+                <h3>Tele Results Data</h3>
                 <iframe src="{{ url_for('static', filename='plots/tele/results_tele_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item">
-                <h3>tele Sector Data Mean</h3>
+                <h3>Tele Sector Data Mean</h3>
                 <iframe src="{{ url_for('static', filename='plots/mean/mean_filtered_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item">
-                <h3>tele Sector Results Mean</h3>
+                <h3>Tele Sector Results Mean</h3>
                 <iframe src="{{ url_for('static', filename='plots/mean/mean_results_plotly.html') }}" class="plot-frame"></iframe>
             </div>
             <div class="grid-item roi-table">
                 <h2>ROI on $1500 ($) by Company and Quarter</h2>
                 <!-- tele ROI Table (Tabulator) -->
                 <div class="table-container">
-                    <h3>tele Companies ROI</h3>
+                    <h3>Tele Companies ROI</h3>
                     <div id="tele-roi-table"></div> <!-- Div for Tabulator table -->
                 </div>
             </div>
