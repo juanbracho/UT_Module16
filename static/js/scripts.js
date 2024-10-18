@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var combinedRoiTable = new Tabulator("#combined-roi-table", {
         ajaxURL: "/combined_roi_data",
         layout: "fitColumns",
-        height: "200px",
+        height: "170px",
         placeholder: "No Data Available",
         columns: [
             { title: "Company", field: "Company", width: 150 },
