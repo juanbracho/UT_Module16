@@ -4,7 +4,7 @@ import pandas as pd
 
 app = Flask(__name__, template_folder='.')
 
-# Route to serve Oil Sector HTML
+# Route to serve Combined Sector HTML
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -14,10 +14,10 @@ def index():
 def tele():
     return render_template('tele.html')
 
-# Route to serve Combined Sector HTML
-@app.route('/combined')
-def combined():
-    return render_template('combine.html')
+# Route to serve Oil Sector HTML
+@app.route('/oil')
+def oil():
+    return render_template('oil.html')
 
 # Function to query database and return ROI data as JSON
 def get_roi_data(query):
