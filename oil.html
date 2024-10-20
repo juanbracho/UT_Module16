@@ -9,6 +9,8 @@
     
     <!-- Include Tabulator CSS -->
     <link href="https://unpkg.com/tabulator-tables@5.1.5/dist/css/tabulator.min.css" rel="stylesheet">
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -49,11 +51,14 @@
             </div>
             <div class="grid-item roi-table">
                 <h2>ROI on $1500 (USD) by Company and Quarter</h2>
-                <!-- Oil ROI Table (Tabulator) -->
-                <div class="table-container">
-                    <h3>Oil Companies ROI</h3>
-                    <div id="oil-roi-table"></div> <!-- Div for Tabulator table -->
+                <!-- Cumulative ROI Plot -->
+                <div class="grid-item">
+                    <h3>Cumulative ROI Chart</h3>
+                    <canvas id="oilRoiChart"></canvas>
                 </div>
+                <!-- Oil ROI Table (Tabulator) -->
+                <h3>Oil Companies ROI</h3>
+                <div id="oil-roi-table"></div>
             </div>
         </div>
     </div>

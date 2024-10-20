@@ -112,3 +112,192 @@ document.addEventListener("DOMContentLoaded", function() {
         ]
     });
 });
+
+// Fetch cumulative ROI data for Combined and plot it using Chart.js
+document.addEventListener("DOMContentLoaded", function() {
+    // Define labels (quarters) for the chart
+    const quarters = ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4"];
+
+    // Fetch cumulative ROI data from the backend
+    fetch('/cumulative_roi_data')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Cumulative ROI Data:", data);  // Log fetched data to confirm
+
+            // Prepare datasets for Chart.js
+            const datasets = data.map(companyData => {
+                return {
+                    label: companyData.Company,
+                    data: quarters.map(quarter => companyData[quarter]), // Map the quarter data
+                    borderColor: getRandomColor(),
+                    fill: false,
+                    tension: 0.1
+                };
+            });
+
+            // Create the cumulative ROI chart
+            const ctx = document.getElementById('cumulativeRoiChart').getContext('2d');
+            const cumulativeRoiChart = new Chart(ctx, {
+                type: 'line',  // Line chart
+                data: {
+                    labels: quarters,  // Quarters as labels
+                    datasets: datasets  // Datasets for each company
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Cumulative ROI by Company'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Cumulative ROI ($)'
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error("Error fetching cumulative ROI data:", error));
+
+    // Function to generate random colors for the chart lines
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+});
+
+// Fetch cumulative ROI data for Oil and plot it using Chart.js
+document.addEventListener("DOMContentLoaded", function() {
+    // Define labels (quarters) for the chart
+    const quarters = ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4"];
+
+    // Fetch cumulative ROI data specifically for the Oil sector
+    fetch('/oil_roi_data')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Oil Cumulative ROI Data:", data);
+
+            // Prepare datasets for Chart.js
+            const datasets = data.map(companyData => {
+                return {
+                    label: companyData.Company,
+                    data: quarters.map(quarter => companyData[quarter]), // Map the quarter data
+                    borderColor: getRandomColor(),
+                    fill: false,
+                    tension: 0.1
+                };
+            });
+
+            // Create the cumulative ROI chart for Oil
+            const ctx = document.getElementById('oilRoiChart').getContext('2d');
+            const cumulativeRoiChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: quarters,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Cumulative ROI for Oil Companies'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Cumulative ROI ($)'
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error("Error fetching Oil cumulative ROI data:", error));
+    
+    // Function to generate random colors for the chart lines
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+});
+
+// Fetch cumulative ROI data for Oil and plot it using Chart.js
+document.addEventListener("DOMContentLoaded", function() {
+    // Define labels (quarters) for the chart
+    const quarters = ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4"];
+
+    // Fetch cumulative ROI data specifically for the Oil sector
+    fetch('/tele_roi_data')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Tele Cumulative ROI Data:", data);
+
+            // Prepare datasets for Chart.js
+            const datasets = data.map(companyData => {
+                return {
+                    label: companyData.Company,
+                    data: quarters.map(quarter => companyData[quarter]), // Map the quarter data
+                    borderColor: getRandomColor(),
+                    fill: false,
+                    tension: 0.1
+                };
+            });
+
+            // Create the cumulative ROI chart for Oil
+            const ctx = document.getElementById('teleRoiChart').getContext('2d');
+            const cumulativeRoiChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: quarters,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Cumulative ROI for Tele Companies'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Cumulative ROI ($)'
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error("Error fetching Tele cumulative ROI data:", error));
+
+    // Function to generate random colors for the chart lines
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+});
