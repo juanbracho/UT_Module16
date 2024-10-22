@@ -55,63 +55,71 @@ function switchSection(view) {
 
 // Initialize the Tabulator tables after the DOM content is fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize Oil ROI Tabulator Table
-    var oilRoiTable = new Tabulator("#oil-roi-table", {
-        ajaxURL: "/oil_roi_data",
-        layout: "fitColumns",
-        height: "100px",
-        placeholder: "No Data Available",
-        columns: [
-            { title: "Company", field: "Company", width: 150 },
-            { title: "2020Q1", field: "2020Q1", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q2", field: "2020Q2", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q3", field: "2020Q3", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q4", field: "2020Q4", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q1", field: "2021Q1", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q2", field: "2021Q2", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q3", field: "2021Q3", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q4", field: "2021Q4", formatter: "money", formatterParams: { symbol: "$" } }
-        ]
-    });
+    // Custom formatter to display percentages with two decimal places and a '%' symbol
+    var percentageFormatter = function(cell, formatterParams, onRendered) {
+        let value = cell.getValue();
+        return value.toFixed(2) + "%";  // Format the value with two decimal places and add '%'
+    };
 
-    // Initialize Telecom ROI Tabulator Table
-    var teleRoiTable = new Tabulator("#tele-roi-table", {
-        ajaxURL: "/tele_roi_data",
-        layout: "fitColumns",
-        height: "100px",
-        placeholder: "No Data Available",
-        columns: [
-            { title: "Company", field: "Company", width: 150 },
-            { title: "2020Q1", field: "2020Q1", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q2", field: "2020Q2", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q3", field: "2020Q3", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q4", field: "2020Q4", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q1", field: "2021Q1", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q2", field: "2021Q2", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q3", field: "2021Q3", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q4", field: "2021Q4", formatter: "money", formatterParams: { symbol: "$" } }
-        ]
-    });
-
-    // Initialize Combined ROI Tabulator Table
+    // Initialize Combined ROI Tabulator Table for yearly data
     var combinedRoiTable = new Tabulator("#combined-roi-table", {
-        ajaxURL: "/combined_roi_data",
-        layout: "fitColumns",
+        ajaxURL: "/yearly_roi_data", // Update URL to fetch yearly data
+        layout: "fitDataTable",
         height: "170px",
         placeholder: "No Data Available",
         columns: [
             { title: "Company", field: "Company", width: 150 },
-            { title: "2020Q1", field: "2020Q1", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q2", field: "2020Q2", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q3", field: "2020Q3", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2020Q4", field: "2020Q4", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q1", field: "2021Q1", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q2", field: "2021Q2", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q3", field: "2021Q3", formatter: "money", formatterParams: { symbol: "$" } },
-            { title: "2021Q4", field: "2021Q4", formatter: "money", formatterParams: { symbol: "$" } }
+            
+            // Year 2020 columns
+            { title: "2020 ROI ($)", field: "2020_ROI", formatter: "money", formatterParams: { symbol: "$" }, headerHozAlign: "center", hozAlign: "center" },
+            { title: "2020 Percentage Change (%)", field: "2020_Percentage_Change", formatter: percentageFormatter, headerHozAlign: "center", hozAlign: "center" },  // Custom formatter for percentage
+            
+            // Year 2021 columns
+            { title: "2021 ROI ($)", field: "2021_ROI", formatter: "money", formatterParams: { symbol: "$" }, headerHozAlign: "center", hozAlign: "center" },
+            { title: "2021 Percentage Change (%)", field: "2021_Percentage_Change", formatter: percentageFormatter, headerHozAlign: "center", hozAlign: "center" }  // Custom formatter for percentage
+        ]
+    });
+
+    // Initialize Telecom ROI Tabulator Table for yearly data
+    var teleRoiTable = new Tabulator("#tele-roi-table", {
+        ajaxURL: "/tele_yearly_roi_data", // Update URL to fetch Telecom data
+        layout: "fitDataTable",
+        height: "170px",
+        placeholder: "No Data Available",
+        columns: [
+            { title: "Company", field: "Company", width: 150 },
+            
+            // Year 2020 columns
+            { title: "2020 ROI ($)", field: "2020_ROI", formatter: "money", formatterParams: { symbol: "$" }, headerHozAlign: "center", hozAlign: "center" },
+            { title: "2020 Percentage Change (%)", field: "2020_Percentage_Change", formatter: percentageFormatter, headerHozAlign: "center", hozAlign: "center" },  // Custom formatter for percentage
+            
+            // Year 2021 columns
+            { title: "2021 ROI ($)", field: "2021_ROI", formatter: "money", formatterParams: { symbol: "$" }, headerHozAlign: "center", hozAlign: "center" },
+            { title: "2021 Percentage Change (%)", field: "2021_Percentage_Change", formatter: percentageFormatter, headerHozAlign: "center", hozAlign: "center" }  // Custom formatter for percentage
+        ]
+    });
+
+    // Initialize Oil ROI Tabulator Table for yearly data
+    var oilRoiTable = new Tabulator("#oil-roi-table", {
+        ajaxURL: "/oil_yearly_roi_data", // Update URL to fetch Oil data
+        layout: "fitDataTable",
+        height: "170px",
+        placeholder: "No Data Available",
+        columns: [
+            { title: "Company", field: "Company", width: 150 },
+            
+            // Year 2020 columns
+            { title: "2020 ROI ($)", field: "2020_ROI", formatter: "money", formatterParams: { symbol: "$" }, headerHozAlign: "center", hozAlign: "center" },
+            { title: "2020 Percentage Change (%)", field: "2020_Percentage_Change", formatter: percentageFormatter, headerHozAlign: "center", hozAlign: "center" },  // Custom formatter for percentage
+            
+            // Year 2021 columns
+            { title: "2021 ROI ($)", field: "2021_ROI", formatter: "money", formatterParams: { symbol: "$" }, headerHozAlign: "center", hozAlign: "center" },
+            { title: "2021 Percentage Change (%)", field: "2021_Percentage_Change", formatter: percentageFormatter, headerHozAlign: "center", hozAlign: "center" }  // Custom formatter for percentage
         ]
     });
 });
+
+
 
 // Fetch cumulative ROI data for Combined and plot it using Chart.js
 document.addEventListener("DOMContentLoaded", function() {
@@ -239,12 +247,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Fetch cumulative ROI data for Oil and plot it using Chart.js
+// Fetch cumulative ROI data for Tele and plot it using Chart.js
 document.addEventListener("DOMContentLoaded", function() {
     // Define labels (quarters) for the chart
     const quarters = ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4"];
 
-    // Fetch cumulative ROI data specifically for the Oil sector
+    // Fetch cumulative ROI data specifically for the Tele sector
     fetch('/tele_roi_data')
         .then(response => response.json())
         .then(data => {
@@ -261,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 };
             });
 
-            // Create the cumulative ROI chart for Oil
+            // Create the cumulative ROI chart for Tele
             const ctx = document.getElementById('teleRoiChart').getContext('2d');
             const cumulativeRoiChart = new Chart(ctx, {
                 type: 'line',

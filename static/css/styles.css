@@ -98,6 +98,11 @@ p {
     width: 96.8%;
 }
 
+/*Tabulator formatting*/
+.roi-tables {
+    margin-left: 50%;
+}
+
 /* Footer styles */
 footer {
     background-color: #333;

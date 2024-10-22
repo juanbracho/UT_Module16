@@ -53,6 +53,118 @@ def get_cumulative_roi_data(query):
     # Return the data in JSON format
     return df_pivot.to_dict(orient='records')
 
+# Function to query yearly ROI and percentage change from the initial investment
+@app.route('/yearly_roi_data')
+def yearly_roi_data():
+    conn = sqlite3.connect('data/stocks_analysis.db')
+    df = pd.read_sql_query("SELECT Company, Quarter, `ROI on $1500 ($)` FROM combined_results", conn)
+    
+    # Extract year from Quarter (e.g., '2020Q1' -> '2020')
+    df['Year'] = df['Quarter'].str[:4]
+
+    # Group by Company and Year, summing the ROI for each year
+    df_yearly = df.groupby(['Company', 'Year'])['ROI on $1500 ($)'].sum().reset_index()
+
+    # Get the initial investment value (Q1 of each company's first year)
+    initial_investment_df = df[df['Quarter'].str.endswith('Q1')].groupby('Company').first().reset_index()
+    initial_investment_df = initial_investment_df[['Company', 'ROI on $1500 ($)']].rename(columns={'ROI on $1500 ($)': 'Initial Investment'})
+
+    # Merge the initial investment back with the yearly data
+    df_yearly = pd.merge(df_yearly, initial_investment_df, on='Company', how='left')
+
+    # Calculate the percentage change from the initial investment
+    df_yearly['Percentage Change (%)'] = ((df_yearly['ROI on $1500 ($)'] - df_yearly['Initial Investment']) / df_yearly['Initial Investment']) * 100
+
+    # Pivot the data to have years (2020, 2021) as separate columns
+    df_pivot = df_yearly.pivot(index='Company', columns='Year', values=['ROI on $1500 ($)', 'Percentage Change (%)']).reset_index()
+
+    # Rename columns for Tabulator table
+    df_pivot.columns = ['Company', '2020_ROI', '2021_ROI', '2020_Percentage_Change', '2021_Percentage_Change']
+
+    # Fill missing values with 0
+    df_pivot.fillna(0, inplace=True)
+
+    # Close the database connection
+    conn.close()
+
+    # Return the data in JSON format
+    return jsonify(df_pivot.to_dict(orient='records'))
+
+# Function to query yearly ROI and percentage change from the initial investment for Telecom
+@app.route('/tele_yearly_roi_data')
+def tele_yearly_roi_data():
+    conn = sqlite3.connect('data/stocks_analysis.db')
+    df = pd.read_sql_query("SELECT Company, Quarter, `ROI on $1500 ($)` FROM combined_results WHERE Company IN ('AT&T', 'T-Mobile', 'Verizon')", conn)
+    
+    # Extract year from Quarter (e.g., '2020Q1' -> '2020')
+    df['Year'] = df['Quarter'].str[:4]
+
+    # Group by Company and Year, summing the ROI for each year
+    df_yearly = df.groupby(['Company', 'Year'])['ROI on $1500 ($)'].sum().reset_index()
+
+    # Get the initial investment value (Q1 of each company's first year)
+    initial_investment_df = df[df['Quarter'].str.endswith('Q1')].groupby('Company').first().reset_index()
+    initial_investment_df = initial_investment_df[['Company', 'ROI on $1500 ($)']].rename(columns={'ROI on $1500 ($)': 'Initial Investment'})
+
+    # Merge the initial investment back with the yearly data
+    df_yearly = pd.merge(df_yearly, initial_investment_df, on='Company', how='left')
+
+    # Calculate the percentage change from the initial investment
+    df_yearly['Percentage Change (%)'] = ((df_yearly['ROI on $1500 ($)'] - df_yearly['Initial Investment']) / df_yearly['Initial Investment']) * 100
+
+    # Pivot the data to have years (2020, 2021) as separate columns
+    df_pivot = df_yearly.pivot(index='Company', columns='Year', values=['ROI on $1500 ($)', 'Percentage Change (%)']).reset_index()
+
+    # Rename columns for Tabulator table
+    df_pivot.columns = ['Company', '2020_ROI', '2021_ROI', '2020_Percentage_Change', '2021_Percentage_Change']
+
+    # Fill missing values with 0
+    df_pivot.fillna(0, inplace=True)
+
+    # Close the database connection
+    conn.close()
+
+    # Return the data in JSON format
+    return jsonify(df_pivot.to_dict(orient='records'))
+
+# Function to query yearly ROI and percentage change from the initial investment for Oil
+@app.route('/oil_yearly_roi_data')
+def oil_yearly_roi_data():
+    conn = sqlite3.connect('data/stocks_analysis.db')
+    df = pd.read_sql_query("SELECT Company, Quarter, `ROI on $1500 ($)` FROM combined_results WHERE Company IN ('Chevron', 'ExxonMobil', 'ConocoPhillips')", conn)
+    
+    # Extract year from Quarter (e.g., '2020Q1' -> '2020')
+    df['Year'] = df['Quarter'].str[:4]
+
+    # Group by Company and Year, summing the ROI for each year
+    df_yearly = df.groupby(['Company', 'Year'])['ROI on $1500 ($)'].sum().reset_index()
+
+    # Get the initial investment value (Q1 of each company's first year)
+    initial_investment_df = df[df['Quarter'].str.endswith('Q1')].groupby('Company').first().reset_index()
+    initial_investment_df = initial_investment_df[['Company', 'ROI on $1500 ($)']].rename(columns={'ROI on $1500 ($)': 'Initial Investment'})
+
+    # Merge the initial investment back with the yearly data
+    df_yearly = pd.merge(df_yearly, initial_investment_df, on='Company', how='left')
+
+    # Calculate the percentage change from the initial investment
+    df_yearly['Percentage Change (%)'] = ((df_yearly['ROI on $1500 ($)'] - df_yearly['Initial Investment']) / df_yearly['Initial Investment']) * 100
+
+    # Pivot the data to have years (2020, 2021) as separate columns
+    df_pivot = df_yearly.pivot(index='Company', columns='Year', values=['ROI on $1500 ($)', 'Percentage Change (%)']).reset_index()
+
+    # Rename columns for Tabulator table
+    df_pivot.columns = ['Company', '2020_ROI', '2021_ROI', '2020_Percentage_Change', '2021_Percentage_Change']
+
+    # Fill missing values with 0
+    df_pivot.fillna(0, inplace=True)
+
+    # Close the database connection
+    conn.close()
+
+    # Return the data in JSON format
+    return jsonify(df_pivot.to_dict(orient='records'))
+
+
 # Endpoint for Oil ROI data
 @app.route('/oil_roi_data')
 def oil_roi_data():
@@ -97,25 +209,3 @@ def cumulative_roi_data():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# Endpoint for Oil ROI data
-@app.route('/oil_roi_data')
-def oil_roi_data():
-    query = """
-    SELECT Company, Quarter, `ROI on $1500 ($)` 
-    FROM combined_results 
-    WHERE Company IN ('Chevron', 'ExxonMobil', 'ConocoPhillips')
-    """
-    data = get_roi_data(query)
-    return jsonify(data)
-
-# Endpoint for Telecom ROI data
-@app.route('/tele_roi_data')
-def tele_roi_data():
-    query = """
-    SELECT Company, Quarter, `ROI on $1500 ($)` 
-    FROM combined_results 
-    WHERE Company IN ('AT&T', 'T-Mobile', 'Verizon')
-    """
-    data = get_roi_data(query)
-    return jsonify(data)
