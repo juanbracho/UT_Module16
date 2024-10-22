@@ -57,6 +57,8 @@ def get_cumulative_roi_data(query):
 @app.route('/yearly_roi_data')
 def yearly_roi_data():
     conn = sqlite3.connect('data/stocks_analysis.db')
+
+    # Fetch ROI data from the database
     df = pd.read_sql_query("SELECT Company, Quarter, `ROI on $1500 ($)` FROM combined_results", conn)
     
     # Extract year from Quarter (e.g., '2020Q1' -> '2020')
@@ -72,8 +74,8 @@ def yearly_roi_data():
     # Merge the initial investment back with the yearly data
     df_yearly = pd.merge(df_yearly, initial_investment_df, on='Company', how='left')
 
-    # Calculate the percentage change from the initial investment
-    df_yearly['Percentage Change (%)'] = ((df_yearly['ROI on $1500 ($)'] - df_yearly['Initial Investment']) / df_yearly['Initial Investment']) * 100
+    # Formula to calculate the percentage change based on the initial $1500 investment
+    df_yearly['Percentage Change (%)'] = (df_yearly['ROI on $1500 ($)'] / 1500) * 100
 
     # Pivot the data to have years (2020, 2021) as separate columns
     df_pivot = df_yearly.pivot(index='Company', columns='Year', values=['ROI on $1500 ($)', 'Percentage Change (%)']).reset_index()
@@ -109,8 +111,8 @@ def tele_yearly_roi_data():
     # Merge the initial investment back with the yearly data
     df_yearly = pd.merge(df_yearly, initial_investment_df, on='Company', how='left')
 
-    # Calculate the percentage change from the initial investment
-    df_yearly['Percentage Change (%)'] = ((df_yearly['ROI on $1500 ($)'] - df_yearly['Initial Investment']) / df_yearly['Initial Investment']) * 100
+    # Formula to calculate the percentage change based on the initial $1500 investment
+    df_yearly['Percentage Change (%)'] = (df_yearly['ROI on $1500 ($)'] / 1500) * 100
 
     # Pivot the data to have years (2020, 2021) as separate columns
     df_pivot = df_yearly.pivot(index='Company', columns='Year', values=['ROI on $1500 ($)', 'Percentage Change (%)']).reset_index()
@@ -146,8 +148,8 @@ def oil_yearly_roi_data():
     # Merge the initial investment back with the yearly data
     df_yearly = pd.merge(df_yearly, initial_investment_df, on='Company', how='left')
 
-    # Calculate the percentage change from the initial investment
-    df_yearly['Percentage Change (%)'] = ((df_yearly['ROI on $1500 ($)'] - df_yearly['Initial Investment']) / df_yearly['Initial Investment']) * 100
+    # Formula to calculate the percentage change based on the initial $1500 investment
+    df_yearly['Percentage Change (%)'] = (df_yearly['ROI on $1500 ($)'] / 1500) * 100
 
     # Pivot the data to have years (2020, 2021) as separate columns
     df_pivot = df_yearly.pivot(index='Company', columns='Year', values=['ROI on $1500 ($)', 'Percentage Change (%)']).reset_index()
