@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize Combined ROI Tabulator Table for yearly data
     var combinedRoiTable = new Tabulator("#combined-roi-table", {
         ajaxURL: "/yearly_roi_data", // Update URL to fetch yearly data
-        layout: "fitDataTable",
+        layout: "fitColumns",
         height: "170px",
         placeholder: "No Data Available",
         columns: [
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize Telecom ROI Tabulator Table for yearly data
     var teleRoiTable = new Tabulator("#tele-roi-table", {
         ajaxURL: "/tele_yearly_roi_data", // Update URL to fetch Telecom data
-        layout: "fitDataTable",
+        layout: "fitColumns",
         height: "170px",
         placeholder: "No Data Available",
         columns: [
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize Oil ROI Tabulator Table for yearly data
     var oilRoiTable = new Tabulator("#oil-roi-table", {
         ajaxURL: "/oil_yearly_roi_data", // Update URL to fetch Oil data
-        layout: "fitDataTable",
+        layout: "fitColumns",
         height: "170px",
         placeholder: "No Data Available",
         columns: [
