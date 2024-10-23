@@ -21,10 +21,11 @@ body {
     color: var(--text-color);
     margin: 0;
     padding: 0;
+    padding-top: 80px; /* Space for fixed header */
+    box-sizing: border-box;
 }
 
 h1, h2 {
-    flex-grow: 1;
     text-align: center;
     color: var(--text-color);
 }
@@ -47,11 +48,35 @@ p {
 /* Header Styling */
 .header {
     display: flex;
+    flex-direction: column; /* Stack title and buttons */
+    align-items: center; /* Center both title and buttons */
     justify-content: center;
-    align-items: center;
     padding: 10px 20px;
     background-color: var(--header-bg-color);
-    position: relative;
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: height 0.3s, padding 0.3s; /* Smoothly reduce header size */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+/* Shrink the height and padding when title is hidden */
+.hide-title .header {
+    padding: 5px 20px; /* Reduce padding when title is hidden */
+}
+
+/* Header Title (h1) */
+.header-title {
+    margin-bottom: 10px; /* Space between title and buttons */
+    transition: opacity 0.3s ease, margin 0.3s ease; /* Smooth hide and margin adjustment */
+}
+
+/* Hide title when scrolling */
+.hide-title .header-title {
+    opacity: 0;
+    margin-bottom: 0; /* Remove margin when hidden so buttons move up */
+    height: 0; /* Collapse title's height when hidden */
 }
 
 /* Theme Toggle Button */
@@ -63,7 +88,7 @@ p {
     margin: 0;
     position: absolute;
     left: 20px;
-    top: 20px;
+    top: 15px;
     outline: none;
     box-shadow: none;
 }
@@ -78,7 +103,51 @@ p {
     transform: scale(1.1);
 }
 
+/* Add styles for plot toggle buttons */
+#plot-toggle {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    transition: transform 0.3s; /* Smooth transition for button repositioning */
+}
+
+/* Ensure plot-toggle container moves up when title is hidden */
+.hide-title #plot-toggle {
+    transform: translateY(-20px); /* Move buttons up by 20px */
+}
+
+/* When header height shrinks, reduce padding-top dynamically */
+.hide-title body {
+    padding-top: 50px; /* Adjust when header shrinks */
+}
+
+/* Plot toggle buttons */
+.plot-toggle-btn {
+    background-color: var(--grid-bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.plot-toggle-btn:hover {
+    background-color: var(--header-bg-color);
+}
+
+.plot-toggle-btn.active {
+    background-color: var(--header-bg-color);
+}
+
 /* Grid Container */
+
+.content-start{
+    padding-top: 70px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
@@ -130,33 +199,7 @@ footer {
     color: #ccc;
 }
 
-/* Add styles for plot toggle buttons */
-#plot-toggle {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    padding-top: 10px;
-}
-
-.plot-toggle-btn {
-    background-color: var(--grid-bg-color);
-    color: var(--text-color);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.plot-toggle-btn:hover {
-    background-color: var(--header-bg-color);
-}
-
-.plot-toggle-btn.active {
-    background-color: var(--header-bg-color);
-}
-
+/* Plot iframe */
 .plot-frame {
     width: 100%;
     height: 500px;
