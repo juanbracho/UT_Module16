@@ -204,19 +204,25 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Fetch cumulative ROI data for Oil and plot it using Chart.js
+// Fetch cumulative ROI data for Oil companies and plot it using Chart.js
 document.addEventListener("DOMContentLoaded", function() {
     // Define labels (quarters) for the chart
     const quarters = ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4"];
 
-    // Fetch cumulative ROI data specifically for the Oil sector
-    fetch('/oil_roi_data')
+    // Define the list of Oil companies by name
+    const oilCompanies = ["Chevron", "ConocoPhillips", "ExxonMobil"]; // Adjust to your specific Oil companies
+
+    // Fetch cumulative ROI data from the backend
+    fetch('/cumulative_roi_data')
         .then(response => response.json())
         .then(data => {
-            console.log("Oil Cumulative ROI Data:", data);
+            console.log("Cumulative ROI Data:", data);  // Log fetched data to confirm
+
+            // Filter the data for only Oil companies
+            const oilData = data.filter(companyData => oilCompanies.includes(companyData.Company));
 
             // Prepare datasets for Chart.js
-            const datasets = data.map(companyData => {
+            const datasets = oilData.map(companyData => {
                 return {
                     label: companyData.Company,
                     data: quarters.map(quarter => companyData[quarter]), // Map the quarter data
@@ -226,13 +232,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 };
             });
 
-            // Create the cumulative ROI chart for Oil
+            // Create the cumulative ROI chart specifically for Oil companies
             const ctx = document.getElementById('oilRoiChart').getContext('2d');
             const cumulativeRoiChart = new Chart(ctx, {
-                type: 'line',
+                type: 'line',  // Line chart
                 data: {
-                    labels: quarters,
-                    datasets: datasets
+                    labels: quarters,  // Quarters as labels
+                    datasets: datasets  // Datasets for each Oil company
                 },
                 options: {
                     responsive: true,
@@ -254,8 +260,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
         })
-        .catch(error => console.error("Error fetching Oil cumulative ROI data:", error));
-    
+        .catch(error => console.error("Error fetching cumulative ROI data:", error));
+
     // Function to generate random colors for the chart lines
     function getRandomColor() {
         const letters = '0123456789ABCDEF';
@@ -267,19 +273,25 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Fetch cumulative ROI data for Tele and plot it using Chart.js
+// Fetch cumulative ROI data for Tele companies and plot it using Chart.js
 document.addEventListener("DOMContentLoaded", function() {
     // Define labels (quarters) for the chart
     const quarters = ["2020Q1", "2020Q2", "2020Q3", "2020Q4", "2021Q1", "2021Q2", "2021Q3", "2021Q4"];
 
-    // Fetch cumulative ROI data specifically for the Tele sector
-    fetch('/tele_roi_data')
+    // Define the list of Tele companies by name
+    const teleCompanies = ["AT&T", "Verizon", "T-Mobile"]; // Adjust to your specific Oil companies
+
+    // Fetch cumulative ROI data from the backend
+    fetch('/cumulative_roi_data')
         .then(response => response.json())
         .then(data => {
-            console.log("Tele Cumulative ROI Data:", data);
+            console.log("Cumulative ROI Data:", data);  // Log fetched data to confirm
+
+            // Filter the data for only Tele companies
+            const teleData = data.filter(companyData => teleCompanies.includes(companyData.Company));
 
             // Prepare datasets for Chart.js
-            const datasets = data.map(companyData => {
+            const datasets = teleData.map(companyData => {
                 return {
                     label: companyData.Company,
                     data: quarters.map(quarter => companyData[quarter]), // Map the quarter data
@@ -289,13 +301,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 };
             });
 
-            // Create the cumulative ROI chart for Tele
+            // Create the cumulative ROI chart specifically for Tele companies
             const ctx = document.getElementById('teleRoiChart').getContext('2d');
             const cumulativeRoiChart = new Chart(ctx, {
-                type: 'line',
+                type: 'line',  // Line chart
                 data: {
-                    labels: quarters,
-                    datasets: datasets
+                    labels: quarters,  // Quarters as labels
+                    datasets: datasets  // Datasets for each Tele company
                 },
                 options: {
                     responsive: true,
@@ -317,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
         })
-        .catch(error => console.error("Error fetching Tele cumulative ROI data:", error));
+        .catch(error => console.error("Error fetching cumulative ROI data:", error));
 
     // Function to generate random colors for the chart lines
     function getRandomColor() {
