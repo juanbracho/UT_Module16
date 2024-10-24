@@ -14,23 +14,25 @@
 </head>
 <body>
 
-    <div class="header">
-        <button id="theme-toggle">
-            <img src="{{ url_for('static', filename='images/theme-icon.png') }}" alt="Switch Theme">
-        </button>               
-        <h1>Stock Analysis: Data Visualization</h1>
-    </div>
- 
+   <!--Header and plot toggle section-->
+   <div class="header">
+    <button id="theme-toggle">
+        <img src="{{ url_for('static', filename='images/theme-icon.png') }}" alt="Switch Theme">
+    </button> 
+
+    <h1 class="header-title">Stock Analysis: Data Visualization</h1>
+
+    <!-- Plot toggle buttons should be inside the header now -->
     <div id="plot-toggle">
         <button onclick="location.href='/'" class="plot-toggle-btn">Combined Sector</button>
         <button onclick="location.href='/oil'" class="plot-toggle-btn">Oil Sector</button>
         <button onclick="location.href='/tele'" class="plot-toggle-btn active">Telecom Sector</button>
     </div>
-    
+    </div> 
 
     <!-- Tele Section with Plots -->
     <div class="section" style="display: block;">
-        <h2>Tele Sector Data Analysis</h2>
+        <h2 class="content-start">Tele Sector Data Analysis</h2>
         <p>The data for the tele sector includes stock price fluctuations and volume traded for major companies.</p>
         
         <div class="grid-container">
@@ -63,6 +65,24 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="project-title">
+                <h4>Project</h4>
+                <p>Data Visualization Track</p>
+            </div>
+            <div class="team">
+                <h4>Team Members</h4>
+                <p>Juan Avila, Kendall Burkett, Patricia Taylor, Rahmeen Zindani, Cassio Sperb</p>
+            </div>
+            <div class="university">
+                <h4>University of Texas at Austin</h4>
+                <p>Bootcamp in Data Analytics</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Include Tabulator JS -->
     <script src="https://unpkg.com/tabulator-tables@5.1.5/dist/js/tabulator.min.js"></script>

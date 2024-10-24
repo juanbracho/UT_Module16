@@ -32,6 +32,27 @@ window.onload = function() {
     switchSection('oil');
 };
 
+// Refined JavaScript to hide the header title on scroll
+document.addEventListener('DOMContentLoaded', function() {
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+    const title = document.querySelector('.header-title');
+
+    window.addEventListener('scroll', function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // If scrolling down, hide the title
+        if (scrollTop > lastScrollTop) {
+            header.classList.add('hide-title');
+        } else {
+            // If scrolling up, show the title
+            header.classList.remove('hide-title');
+        }
+        lastScrollTop = scrollTop;
+    });
+});
+
+
 // Function to toggle between different sections (Oil, Telecom, Combined)
 function switchSection(view) {
     const sections = {
@@ -118,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function() {
         ]
     });
 });
-
 
 
 // Fetch cumulative ROI data for Combined and plot it using Chart.js
